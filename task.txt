@@ -1,0 +1,343 @@
+HRM (Human Resource Management) Modules:
+1. Employee Management
+Fields:
+
+id (Auto-generated ID or UUID)
+
+firstName (string)
+
+lastName (string)
+
+email (string, unique)
+
+phoneNumber (string)
+
+position (string)
+
+salary (number)
+
+department (string)
+
+dateOfJoining (date)
+
+status (active/inactive)
+
+address (string)
+
+Role & Permissions:
+
+Admin: Can create, update, delete, and view employees.
+
+HR: Can create, update, and view employees.
+
+Employee: Can view own profile.
+
+Pagination: Display a paginated list of employees.
+
+Filtering: Filter by department, position, or status.
+
+2. Attendance Management
+Fields:
+
+id (Auto-generated ID or UUID)
+
+employeeId (foreign key to employee)
+
+date (date)
+
+status (Present/Absent)
+
+remarks (string)
+
+Role & Permissions:
+
+Admin: Can view and manage attendance records.
+
+HR: Can view and mark attendance.
+
+Employee: Can view own attendance records.
+
+Pagination: Paginate attendance data per employee or date.
+
+Filtering: Filter by employee, date range, or attendance status.
+
+3. Leave Management
+Fields:
+
+id (Auto-generated ID or UUID)
+
+employeeId (foreign key to employee)
+
+leaveType (Sick Leave, Vacation, etc.)
+
+startDate (date)
+
+endDate (date)
+
+status (Pending/Approved/Rejected)
+
+reason (string)
+
+Role & Permissions:
+
+Admin: Can approve/reject leave requests.
+
+HR: Can approve/reject leave requests.
+
+Employee: Can request leaves and view leave history.
+
+Pagination: Paginate leave requests by employee or date.
+
+Filtering: Filter by leave status, date range, or leave type.
+
+4. Payroll Management
+Fields:
+
+id (Auto-generated ID or UUID)
+
+employeeId (foreign key to employee)
+
+salaryMonth (date)
+
+basicSalary (number)
+
+bonus (number)
+
+deductions (number)
+
+netSalary (number)
+
+paymentDate (date)
+
+Role & Permissions:
+
+Admin: Can view and modify salary data.
+
+HR: Can view payroll records.
+
+Employee: Can view own salary slips.
+
+Pagination: Paginate payroll records.
+
+Filtering: Filter by month, employee, or salary range.
+
+5. Role and Permission Management
+Fields:
+
+id (Auto-generated ID or UUID)
+
+roleName (Admin, HR, Employee, etc.)
+
+permissions (array of permission strings like create, update, delete, view)
+
+Role & Permissions:
+
+Admin: Can create roles and assign permissions.
+
+HR: Can assign roles and permissions to employees.
+
+Pagination: Paginate roles and permissions.
+
+Filtering: Filter by role name or permissions.
+
+CRM (Customer Relationship Management) Modules:
+1. Customer Management
+Fields:
+
+id (Auto-generated ID or UUID)
+
+firstName (string)
+
+lastName (string)
+
+company (string)
+
+email (string)
+
+phoneNumber (string)
+
+address (string)
+
+status (Active/Inactive)
+
+createdAt (date)
+
+Role & Permissions:
+
+Admin: Can create, update, delete, and view customers.
+
+Sales: Can create and update customers.
+
+Support: Can view customer details.
+
+Pagination: Paginate customer list.
+
+Filtering: Filter by company, status, or customer name.
+
+2. Lead Management
+Fields:
+
+id (Auto-generated ID or UUID)
+
+customerId (foreign key to customer)
+
+leadSource (Referral, Website, etc.)
+
+leadStage (New, In Progress, Converted, Lost)
+
+assignedTo (salesperson)
+
+createdAt (date)
+
+updatedAt (date)
+
+Role & Permissions:
+
+Admin: Can view and manage leads.
+
+Sales: Can create, update, and manage leads.
+
+Pagination: Paginate leads list by stage.
+
+Filtering: Filter by lead stage, salesperson, or date range.
+
+3. Sales/Opportunity Management
+Fields:
+
+id (Auto-generated ID or UUID)
+
+leadId (foreign key to lead)
+
+opportunityStage (Initial Contact, Negotiation, Closed)
+
+dealAmount (number)
+
+expectedCloseDate (date)
+
+assignedTo (salesperson)
+
+status (Open/Closed)
+
+Role & Permissions:
+
+Admin: Can view and manage opportunities.
+
+Sales: Can create, update, and close opportunities.
+
+Pagination: Paginate opportunities by stage.
+
+Filtering: Filter by deal stage, amount, or salesperson.
+
+4. Task and Activity Management
+Fields:
+
+id (Auto-generated ID or UUID)
+
+taskName (string)
+
+taskDescription (string)
+
+assignedTo (salesperson or support)
+
+dueDate (date)
+
+status (Pending/In Progress/Completed)
+
+createdAt (date)
+
+Role & Permissions:
+
+Admin: Can assign tasks to any employee.
+
+Sales: Can create and manage their tasks.
+
+Support: Can manage tasks related to customer support.
+
+Pagination: Paginate tasks.
+
+Filtering: Filter by task status, assigned user, or due date.
+
+5. Customer Communication (Email/Call Tracking)
+Fields:
+
+id (Auto-generated ID or UUID)
+
+customerId (foreign key to customer)
+
+communicationType (Email/Call/Meeting)
+
+communicationDate (date)
+
+details (string)
+
+assignedTo (salesperson or support)
+
+Role & Permissions:
+
+Admin: Can view and manage communication logs.
+
+Sales: Can log communication details.
+
+Support: Can view communication logs.
+
+Pagination: Paginate communication records.
+
+Filtering: Filter by communication type, customer, or date range.
+
+6. Role and Permission Management
+Fields:
+
+id (Auto-generated ID or UUID)
+
+roleName (Admin, Sales, Support, etc.)
+
+permissions (array of permission strings like create, update, delete, view)
+
+Role & Permissions:
+
+Admin: Can create roles and assign permissions.
+
+Sales: Can view own roles and permissions.
+
+Pagination: Paginate roles and permissions.
+
+Filtering: Filter by role name or permissions.
+
+General Features (Across HRM & CRM):
+Authentication & Authorization
+
+Fields:
+
+userId (foreign key to employee/customer)
+
+username (string)
+
+passwordHash (string)
+
+role (Admin, HR, Sales, etc.)
+
+Role & Permissions:
+
+Admin: Can create and manage users, assign roles.
+
+HR/Sales: Can view own profile and access specific modules based on role.
+
+Audit Logs
+
+Fields:
+
+id (Auto-generated ID)
+
+action (Create, Update, Delete, View)
+
+entityType (Employee, Customer, Lead, etc.)
+
+entityId (ID of the entity)
+
+performedBy (userID of the person who performed the action)
+
+timestamp (date)
+
+Role & Permissions:
+
+Admin: Can view and manage audit logs.
